@@ -1,12 +1,11 @@
 from abc import ABC, abstractmethod
-from typing import Type
 
 from app.db.database import async_session_maker
 from app.repositories.todo_repository import ToDoRepository
 
 
 class IUnitOfWork(ABC):
-    todo: Type[ToDoRepository]
+    todo: ToDoRepository
 
     @abstractmethod
     def __init__(self):
@@ -29,7 +28,7 @@ class IUnitOfWork(ABC):
         ...
 
 
-class UnitOfWork:
+class UnitOfWork(IUnitOfWork):
     def __init__(self):
         self.session_factory = async_session_maker
 
