@@ -12,7 +12,7 @@ class ToDo(Base):
     id: Mapped[int] = mapped_column(BigInteger, primary_key=True, index=True)  # Строка  говорит, что наша колонка будет интом, но уточняет, что ещё и большим интом (актуально для ТГ-ботов), первичным ключом и индексироваться
     description: Mapped[str]  # Описание, просто строка; если нужно дополнительные условия добавить, то mapped_column
     completed: Mapped[bool] = mapped_column(default=False)  # Задали значение по-умолчанию False
-    created_at: Mapped[datetime] = mapped_column(DateTime, nullable=False, default=func.now())  # просто для примера
+    created_at: Mapped[datetime] = mapped_column(DateTime, nullable=False, server_default=func.now())  # просто для примера
 
 # Код выше аналогичен этим устаревшим примерам:
 
