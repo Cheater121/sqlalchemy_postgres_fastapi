@@ -36,6 +36,7 @@ class UnitOfWork(IUnitOfWork):
         self.session = self.session_factory()
 
         self.todo = ToDoRepository(self.session)
+        return self
 
     async def __aexit__(self, *args):
         await self.rollback()
